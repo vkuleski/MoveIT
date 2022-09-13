@@ -7,7 +7,10 @@ namespace MoveIT.Data.Persistence.Configurations;
 internal static class IdentityConfiguration
 {
     private const string AdminEmail = "admin@example.com";
+    private const string AdminPassword = "admin123$";
+
     private const string UserEmail = "john@example.com";
+    private const string UserPassword = "john123$";
 
     internal static void SeedData(this ModelBuilder builder)
     {
@@ -47,8 +50,8 @@ internal static class IdentityConfiguration
 
         var passwordHasher = new PasswordHasher<AppUser>();
 
-        users[0].PasswordHash = passwordHasher.HashPassword(users[0], "pa$$word!");
-        users[1].PasswordHash = passwordHasher.HashPassword(users[1], "pa$$word!");
+        users[0].PasswordHash = passwordHasher.HashPassword(users[0], AdminPassword);
+        users[1].PasswordHash = passwordHasher.HashPassword(users[1], UserPassword);
 
         var userRoles = new List<IdentityUserRole<string>>
         {

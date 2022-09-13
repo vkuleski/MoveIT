@@ -5,11 +5,16 @@ VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoveIT.Web", "MoveIT.Web\MoveIT.Web.csproj", "{BF6242C4-C1C7-4258-B0D2-69EBEA5E8FE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveIT.Data", "MoveIT.Data\MoveIT.Data.csproj", "{B416F1EA-8F4A-4EC9-A889-89D35AB04244}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoveIT.Data", "MoveIT.Data\MoveIT.Data.csproj", "{B416F1EA-8F4A-4EC9-A889-89D35AB04244}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveIT.Services", "MoveIT.Services\MoveIT.Services.csproj", "{F18E1D34-22D6-48F8-8D65-4F732FD10718}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoveIT.Services", "MoveIT.Services\MoveIT.Services.csproj", "{F18E1D34-22D6-48F8-8D65-4F732FD10718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveIT.Application", "MoveIT.Application\MoveIT.Application.csproj", "{CA684F6D-7377-4255-A282-74945DB26EE5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoveIT.Application", "MoveIT.Application\MoveIT.Application.csproj", "{CA684F6D-7377-4255-A282-74945DB26EE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A227EDB5-FAB0-4BF0-8B17-769C5F036E77}"
+	ProjectSection(SolutionItems) = preProject
+		ProjectSetupInfo.txt = ProjectSetupInfo.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

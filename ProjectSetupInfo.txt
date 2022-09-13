@@ -1,0 +1,10 @@
+The Migration files for creating the database is in MoveIT.Data/Persistence/Migrations.
+
+In MoveIT.WEB project in appsettings.json is specified db conection string. Change data source if needed.
+
+In Package Manager Console make sure that MoveIT.Data is selected as default project
+and run "update-database" command and the database should be succesfully created.
+
+Two default users should be added: admin@example.com and john@example.com. 
+	Visit :C\MoveIT.Data\Persistence\Configurations\IdentityConfiguration
+
