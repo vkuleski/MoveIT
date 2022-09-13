@@ -11,16 +11,11 @@ namespace MoveIT.Data;
 
 public static class DataRegistration
 {
-    public static void DataRegister(this IServiceCollection services, IConfiguration configuration, bool useInMemoryDb = false)
+    public static void DataRegister(this IServiceCollection services, IConfiguration configuration)
     {
-        if (useInMemoryDb)
-            services.AddDbContext<MoveItDbContext>(o => o.UseInMemoryDatabase("MoveIT"));
-        else
-        {
-            services.AddDbContext<MoveItDbContext>(o =>
-                o.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
-                    builder => builder.MigrationsAssembly(typeof(MoveItDbContext).Assembly.FullName)));
-        }
+        services.AddDbContext<MoveItDbContext>(o =>
+            o.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                builder => builder.MigrationsAssembly(typeof(MoveItDbContext).Assembly.FullName)));
 
         services.AddIdentity<AppUser, IdentityRole>()
             .AddEntityFrameworkStores<MoveItDbContext>()

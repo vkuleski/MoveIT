@@ -34,9 +34,6 @@ public class ProposalService : IProposalService
     {
         var proposals = await _repository.GetByUserIdAsync(userId);
 
-        if (!proposals.Any())
-            throw new ProposalNotFoundException(0);
-
         return proposals.Adapt<IEnumerable<ProposalDto>>();
     }
 
