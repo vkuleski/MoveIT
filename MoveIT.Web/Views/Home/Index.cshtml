@@ -1,0 +1,97 @@
+﻿@model IEnumerable<ProposalViewModel>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FromAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Distance)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LivingArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AtticArea)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumberOfCars)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasPiano)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CalculatedPrice)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            @Html.HiddenFor(modelItem => item.Id)
+            <td>
+                @Html.DisplayFor(modelItem => item.FromAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Distance)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LivingArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AtticArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfCars)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasPiano)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CalculatedPrice)
+            </td>
+            <td>
+                <a class="confirmDeletion" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts
+{
+    <script>
+        $(function () {
+
+            if ($("a.confirmDeletion").length) {
+                $("a.confirmDeletion").click(() => {
+                    if (!confirm("Confirm deletion")) return false;
+                });
+            }
+
+            if ($("div.alert.notification").length) {
+                setTimeout(() => {
+                    $("div.alert.notification").fadeOut();
+                }, 2000);
+            }
+        });
+
+    </script>
+}

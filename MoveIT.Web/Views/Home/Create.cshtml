@@ -1,0 +1,110 @@
+﻿@model ProposalViewModel
+
+@{
+    ViewData["Title"] = "Create proposal";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FromAddress" class="control-label"></label>
+                <input asp-for="FromAddress" class="form-control" />
+                <span asp-validation-for="FromAddress" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="ToAddress" class="control-label"></label>
+                <input asp-for="ToAddress" class="form-control" />
+                <span asp-validation-for="ToAddress" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="Distance" class="control-label"></label>
+                <input asp-for="Distance" class="form-control calculate" value="0" />
+                <span asp-validation-for="Distance" class="text-danger" ></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="LivingArea" class="control-label"></label>
+                <input asp-for="LivingArea" class="form-control calculate" value="0"/>
+                <span asp-validation-for="LivingArea" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="AtticArea" class="control-label"></label>
+                <input asp-for="AtticArea" class="form-control calculate" value="0"/>
+                <span asp-validation-for="AtticArea" class="text-danger"></span>
+            </div>
+            <br/>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    @Html.DisplayNameFor(model => model.HasPiano)  <input class="form-check-input" asp-for="HasPiano" />
+                </label>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label asp-for="CalculatedPrice" class="control-label"></label>
+                <input asp-for="CalculatedPrice" class="form-control" readonly="readonly" />
+                <span asp-validation-for="CalculatedPrice" class="text-danger"></span>
+            </div>
+            <br/>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(function() {
+            $(".calculate").blur(function(e) {
+                if ($("#Distance").val() > 0) {
+                     calculatePrice(e);
+                }
+            });
+
+            $('#HasPiano').change(function(e) {
+                if ($("#Distance").val() > 0) {
+                    calculatePrice(e);
+                }
+            });
+
+            function calculatePrice(e) {
+                e.preventDefault();
+                var price = 0;
+                $.ajax({
+                    async: false,
+                    url: '/Home/TotalPrice',
+                    data: {
+                        Distance: $("#Distance").val(),
+                        LivingArea: $("#LivingArea").val() ?? 0,
+                        AtticArea: $("#AtticArea").val() ?? 0,
+                        HasPiano: $("#HasPiano").is(':checked')
+                    },
+                    type: 'Get',
+                    success: function(data) {
+                        price = data;
+                    }
+                });
+
+                $("#CalculatedPrice").val(price);
+            }
+
+        });
+
+
+    </script>
+}
