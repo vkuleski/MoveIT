@@ -10,4 +10,6 @@ public class ProposalDto
     public int AtticArea { get; set; }
     public int NumberOfCars { get; set; }
     public bool HasPiano { get; set; }
+    public int CalculatedPrice { get; set; }
+
 }
